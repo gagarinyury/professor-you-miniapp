@@ -20,6 +20,13 @@ function App() {
         setLesson("Урок 1: Основы групповой терапии");
     };
 
+    const completeLesson = () => {
+        if (tg) {
+            tg.sendData("Пользователь " + (user?.first_name || "неизвестный") + " завершил Урок 1.");
+            alert("Ваш прогресс отправлен в Telegram!");
+        }
+    };
+
     return (
         <div style={{ padding: "20px", textAlign: "center", fontFamily: "Arial" }}>
             <h1>Professor You</h1>
@@ -47,6 +54,20 @@ function App() {
                 <div>
                     <h2>{lesson}</h2>
                     <p>Здесь будет содержание урока...</p>
+                    <button 
+                        onClick={completeLesson} 
+                        style={{
+                            padding: "10px 20px",
+                            fontSize: "16px",
+                            background: "#4CAF50",
+                            color: "white",
+                            border: "none",
+                            borderRadius: "5px",
+                            cursor: "pointer",
+                            marginRight: "10px"
+                        }}>
+                        Завершить урок
+                    </button>
                     <button 
                         onClick={() => setLesson(null)} 
                         style={{
